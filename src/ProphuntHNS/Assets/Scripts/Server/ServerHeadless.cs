@@ -1,33 +1,29 @@
 using System;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 
 public class ServerHeadless : MonoBehaviour
 {
     private NetworkManager _networkManager;
+    private UnityTransport _transport;
     
     private void Awake()
     {
-        bool isServer = Application.isBatchMode;
-        if (!isServer)
-        {
-            Destroy(this);
-            return;
-        }
-        
         _networkManager = gameObject.GetComponent<NetworkManager>();
-        _networkManager.StartServer();
+        _transport = GetComponent<UnityTransport>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        #if SERVER
+            _networkManager.StartServer();
+            Debug.Log("Server started");
+        #else
+            _networkManager.StartClient();
+            Debug.Log("Client started");
+        #endif
         
     }
 }
