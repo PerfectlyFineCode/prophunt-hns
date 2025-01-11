@@ -1,37 +1,52 @@
 using System;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : NetworkBehaviour
 {
     private readonly NetworkVariable<Vector2> _movementInput = new(new Vector2(0, 0));
+    private readonly NetworkVariable<Vector3> _moveDirection = new(new Vector3(0, 0, 0));
+    private readonly NetworkVariable<float> _speed = new(5);
+    private CameraFollow _cameraFollow;
+    private Camera _camera;
 
 
     /// <inheritdoc />
     public override void OnNetworkSpawn()
     {
         if (!IsLocalPlayer) return;
+        _cameraFollow = FindFirstObjectByType<CameraFollow>();
+        _camera = _cameraFollow.GetComponentInChildren<Camera>();
         CameraFollow.SetPlayer(gameObject);
     }
-
+    
     private void OnMove(InputValue value)
     {
         if (!IsLocalPlayer) return;
         Vector2 movementInput = value.Get<Vector2>();
-        MoveServerRpc(movementInput);
+        var translatedMovementInput = MoveRelativeCamera(new Vector3(movementInput.x, 0, movementInput.y));
+        MoveServerRpc(translatedMovementInput, translatedMovementInput);
+    }
+
+    private Vector3 MoveRelativeCamera(Vector3 delta)
+    {
+        Vector3 dir = _camera.transform.TransformDirection(delta);
+        dir.y = 0;
+        return dir.normalized * delta.magnitude;
     }
 
     private void Update()
     {
         if (!IsServer) return;
-        Vector3 movementDelta = new(_movementInput.Value.x, 0, _movementInput.Value.y);
-        transform.position += movementDelta * Time.deltaTime;
+        transform.position += _moveDirection.Value * (Time.deltaTime * _speed.Value);
     }
     
     [ServerRpc]
-    private void MoveServerRpc(Vector2 movementDelta)
+    private void MoveServerRpc(Vector2 inputDelta, Vector3 moveDirection)
     {
-        _movementInput.Value = movementDelta;
+        _movementInput.Value = inputDelta.normalized;
+        _moveDirection.Value = moveDirection;
     }
 }
