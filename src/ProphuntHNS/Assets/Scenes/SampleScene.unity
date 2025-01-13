@@ -487,6 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6ccef636a3d284083031691035d780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   _smoothSpeed: 0.5
 --- !u!1 &832575517
 GameObject:
@@ -606,7 +607,7 @@ MonoBehaviour:
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: dba5845ef7fae1e4899d56e78b28fd35, type: 2}
-    TickRate: 60
+    TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
     ConnectionData: 
@@ -670,7 +671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 1260561761959674432
+    rid: 1260561808889479767
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 0
@@ -680,7 +681,7 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 1260561761959674432
+    - rid: 1260561808889479767
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
         <Name>k__BackingField: None
@@ -693,8 +694,8 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 491039774}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1366003966}
   - {fileID: 284964564}
-  - {fileID: 491039774}

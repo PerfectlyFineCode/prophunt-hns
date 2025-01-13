@@ -118,6 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8271416094177915368}
   - component: {fileID: 8884757845147472944}
+  - component: {fileID: 478069941887175017}
   - component: {fileID: 8902979689983236490}
   - component: {fileID: 3536114521399520538}
   - component: {fileID: 4021350684151279825}
@@ -169,6 +170,22 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &478069941887175017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995014016361652001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44da44a490551f442b5caa68ecdc03de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  IsShooting:
+    m_InternalValue: 0
+  _bulletPrefab: {fileID: 9040600136677733913, guid: 37d781606699e8241aa4b4a05a92849c, type: 3}
 --- !u!114 &8902979689983236490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 139852e6e06edf14aa08d9050b560af9, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:

@@ -22,7 +22,7 @@ public class PlayerMovement : NetworkBehaviour
         CameraFollow.SetPlayer(gameObject);
     }
     
-    private void OnMove(InputValue value)
+    public void OnMove(InputValue value)
     {
         if (!IsLocalPlayer) return;
         Vector2 movementInput = value.Get<Vector2>();

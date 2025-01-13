@@ -1,14 +1,24 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : NetworkBehaviour
 {
     private Transform _player;
     
     [SerializeField] private float _smoothSpeed = 0.5f;
     
     private static CameraFollow _instance;
-    
+
+    /// <inheritdoc />
+    public override void OnNetworkSpawn()
+    {
+        if (!IsLocalPlayer)
+        {
+            Destroy(this);
+        }
+    }
+
     private void Awake()
     {
         if (_instance == null)

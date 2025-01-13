@@ -17,9 +17,10 @@ public class ServerHeadless : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        #if SERVER
+        #if UNITY_SERVER
             _networkManager.StartServer();
             Debug.Log("Server started");
+            Application.targetFrameRate = 60;
         #else
             _networkManager.StartClient();
             Debug.Log("Client started");
