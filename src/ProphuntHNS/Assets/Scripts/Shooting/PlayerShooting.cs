@@ -38,7 +38,9 @@ public class PlayerShooting : NetworkBehaviour
 	{
 		if (!IsServer) return;
 		// Spawn bullet
-		var networkObject = NetworkManager.SpawnManager.InstantiateAndSpawn(_bulletPrefab);
+		NetworkObject networkObject = NetworkManager.SpawnManager.InstantiateAndSpawn(_bulletPrefab, position:
+			transform.position + transform.forward,
+			rotation: transform.rotation);
 	}
 
 	public void OnShoot(InputValue value)

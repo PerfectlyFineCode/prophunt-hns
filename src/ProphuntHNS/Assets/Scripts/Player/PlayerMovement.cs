@@ -11,6 +11,12 @@ public class PlayerMovement : NetworkBehaviour
     private readonly NetworkVariable<float> _speed = new(5);
     private CameraFollow _cameraFollow;
     private Camera _camera;
+    private Rigidbody _rigidbody;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
 
     /// <inheritdoc />
@@ -40,7 +46,7 @@ public class PlayerMovement : NetworkBehaviour
     private void Update()
     {
         if (!IsServer) return;
-        transform.position += _moveDirection.Value * (Time.deltaTime * _speed.Value);
+        _rigidbody.linearVelocity = _moveDirection.Value * _speed.Value;
     }
     
     [ServerRpc]

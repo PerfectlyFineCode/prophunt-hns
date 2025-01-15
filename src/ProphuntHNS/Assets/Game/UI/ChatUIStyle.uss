@@ -1,0 +1,31 @@
+.chat-container {
+    position: absolute;
+    left: 2.5%;
+    top:  2.5%;
+    width: 20%;
+    height: 20%;
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.chat-list {
+    flex-grow: 1;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.unity-base-text-field__input {
+    background-color: rgb(38, 38, 38);
+    color: gray;
+    border-width: 0;
+}
+
+.chat-button {
+    padding: 5px;
+    background-color: rgb(38, 38, 38);
+    border-width: 0;
+    color: gray;
+    font-size: 10px;
+}
+

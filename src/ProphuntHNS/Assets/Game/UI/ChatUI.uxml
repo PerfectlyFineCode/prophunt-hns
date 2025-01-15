@@ -1,0 +1,11 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Game/UI/ChatUIStyle.uss?fileID=7433441132597879392&amp;guid=68e5b5122379ab941b2dd3b3f6c91186&amp;type=3#ChatUIStyle" />
+    <engine:VisualElement class="chat-container">
+        <engine:ListView class="chat-list" />
+        <engine:VisualElement>
+            <engine:TextField placeholder-text="Send Message" class="chat-textbox">
+                <engine:Button text="Send" class="chat-button" />
+            </engine:TextField>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
