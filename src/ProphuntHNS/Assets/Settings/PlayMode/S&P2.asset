@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a689d91966dfb46499fb63f130d9b905, type: 3}
-  m_Name: Server And Player
+  m_Name: S&P2
   m_EditorClassIdentifier: 
-  m_Description: Server & Player
+  m_Description: S&P2
   m_EnableEditors: 1
   m_MainEditorInstance:
     Name: Main Editor
@@ -22,7 +22,17 @@ MonoBehaviour:
     - Main Editor|0_deploy
     m_PlayerTag: 
     m_InitialScene: {fileID: 0}
-  m_EditorInstances: []
+  m_EditorInstances:
+  - Name: Player 2
+    <CorrespondingNodeId>k__BackingField: Player 2|1_run
+    m_Nodes:
+    - Player 2|1_run
+    - Player 2|1_deploy
+    m_PlayerTag: PlayerTwo
+    m_InitialScene: {fileID: 0}
+    m_AdvancedConfiguration:
+      StreamLogsToMainEditor: 0
+      LogsColor: {r: 0.3643, g: 0.581, b: 0.8679, a: 1}
   m_LocalInstances:
   - Name: Server
     <CorrespondingNodeId>k__BackingField: Server - Run

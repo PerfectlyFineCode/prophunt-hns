@@ -9,6 +9,10 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.send-container {
+    min-height: 40px;
+}
+
 .chat-list {
     flex-grow: 1;
     padding: 5px;
@@ -29,3 +33,6 @@
     font-size: 10px;
 }
 
+.chat-item {
+    color: white;
+}

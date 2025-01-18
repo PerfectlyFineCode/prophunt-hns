@@ -2,6 +2,7 @@ using System;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : NetworkBehaviour
@@ -11,11 +12,12 @@ public class PlayerMovement : NetworkBehaviour
     private readonly NetworkVariable<float> _speed = new(5);
     private CameraFollow _cameraFollow;
     private Camera _camera;
-    private Rigidbody _rigidbody;
+    private CharacterController _characterController;
+    private bool _isHoveringUI;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        _characterController = GetComponent<CharacterController>();
     }
 
 
@@ -25,12 +27,14 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsLocalPlayer) return;
         _cameraFollow = FindFirstObjectByType<CameraFollow>();
         _camera = _cameraFollow.GetComponentInChildren<Camera>();
-        CameraFollow.SetPlayer(gameObject);
+        CameraFollow.SetPlayer(this);
     }
     
     public void OnMove(InputValue value)
     {
         if (!IsLocalPlayer) return;
+        if (_isHoveringUI) return;
+        ChatMessenger.SendChatMessage("Player is moving");
         Vector2 movementInput = value.Get<Vector2>();
         var translatedMovementInput = MoveRelativeCamera(new Vector3(movementInput.x, 0, movementInput.y));
         MoveServerRpc(translatedMovementInput, translatedMovementInput);
@@ -45,10 +49,21 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Update()
     {
+        UpdateOverUI();
         if (!IsServer) return;
-        _rigidbody.linearVelocity = _moveDirection.Value * _speed.Value;
+        _characterController.SimpleMove(new Vector3(
+            _moveDirection.Value.x * _speed.Value,
+            0,
+            _moveDirection.Value.z * _speed.Value
+        ));
     }
     
+    private void UpdateOverUI()
+    {
+        if (!IsLocalPlayer) return;
+        _isHoveringUI = EventSystem.current.IsPointerOverGameObject();
+    }
+
     [ServerRpc]
     private void MoveServerRpc(Vector2 inputDelta, Vector3 moveDirection)
     {

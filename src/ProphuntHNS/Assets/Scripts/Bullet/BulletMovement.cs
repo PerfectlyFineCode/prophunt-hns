@@ -20,11 +20,18 @@ public class BulletMovement : NetworkBehaviour
     {
         
     }
+    
+    private float _currentLifeTime = 0;
 
     // Update is called once per frame
     private void Update()
     {
-        
+        if (!IsServer) return;
+        _currentLifeTime += Time.deltaTime;
+        if (_currentLifeTime > 5)
+        {
+            NetworkObject.Despawn();
+        }
     }
 
     private void FixedUpdate()
@@ -44,7 +51,8 @@ public class BulletMovement : NetworkBehaviour
 
     private void OnBulletHit(int result)
     {
-        
         Debug.Log("Bullet hit ");
+        if (!IsServer) return;
+        NetworkObject.Despawn();
     }
 }
