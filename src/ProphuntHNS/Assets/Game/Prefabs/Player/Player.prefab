@@ -119,11 +119,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8271416094177915368}
   - component: {fileID: 8884757845147472944}
+  - component: {fileID: 571041391298930162}
   - component: {fileID: 478069941887175017}
   - component: {fileID: 8902979689983236490}
   - component: {fileID: 2668941533061250666}
-  - component: {fileID: 3536114521399520538}
+  - component: {fileID: 9223086752363361943}
   - component: {fileID: 4355001146745231206}
+  - component: {fileID: 3536114521399520538}
   - component: {fileID: 4021350684151279825}
   - component: {fileID: 4715736258697300602}
   m_Layer: 0
@@ -174,6 +176,19 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &571041391298930162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995014016361652001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ffd1f201234150ae5a9b071f3f7a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &478069941887175017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +206,8 @@ MonoBehaviour:
     m_InternalValue: 0
   FireRate:
     m_InternalValue: 0.5
+  ShootDirection:
+    m_InternalValue: {x: 0, y: 0, z: 0}
   _bulletPrefab: {fileID: 9040600136677733913, guid: 37d781606699e8241aa4b4a05a92849c, type: 3}
 --- !u!114 &8902979689983236490
 MonoBehaviour:
@@ -221,6 +238,35 @@ MonoBehaviour:
   PropId:
     m_InternalValue: 0
   _originalModel: {fileID: 2639166534326494090}
+--- !u!114 &9223086752363361943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995014016361652001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d59e1205fb34a2ea64dcffeb61bbc90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  Team:
+    m_InternalValue: 0
+--- !u!114 &4355001146745231206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995014016361652001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597be3e4a8e8ced4d992ca989db10b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _spawnPosition: {x: 0, y: 10, z: 0}
 --- !u!114 &3536114521399520538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,20 +297,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4355001146745231206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8995014016361652001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597be3e4a8e8ced4d992ca989db10b98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  _spawnPosition: {x: 0, y: 10, z: 0}
 --- !u!114 &4021350684151279825
 MonoBehaviour:
   m_ObjectHideFlags: 0

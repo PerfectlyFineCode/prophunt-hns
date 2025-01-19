@@ -10,6 +10,7 @@ public class PlayerMovement : NetworkBehaviour
     private readonly NetworkVariable<Vector2> _movementInput = new(new Vector2(0, 0));
     private readonly NetworkVariable<Vector3> _moveDirection = new(new Vector3(0, 0, 0));
     private readonly NetworkVariable<float> _speed = new(5);
+    
     private CameraFollow _cameraFollow;
     private Camera _camera;
     private CharacterController _characterController;

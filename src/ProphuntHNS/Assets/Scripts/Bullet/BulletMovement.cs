@@ -36,7 +36,7 @@ public class BulletMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        var previousPosition = transform.position;
+        Vector3 previousPosition = transform.position;
         transform.position += transform.forward * (Time.deltaTime * 10);
         int result = Physics.RaycastNonAlloc(previousPosition,
             (previousPosition - transform.position).normalized,
@@ -51,8 +51,16 @@ public class BulletMovement : NetworkBehaviour
 
     private void OnBulletHit(int result)
     {
-        Debug.Log("Bullet hit ");
         if (!IsServer) return;
+        Debug.Log("Bullet hit ");
+        for (int i = 0; i < result; i++)
+        {
+            RaycastHit hit = _hits[i];
+            if (hit.collider.gameObject.TryGetComponent(out PlayerHealth health))
+            {
+                health.TakeDamage(10);
+            }
+        }
         NetworkObject.Despawn();
     }
 }

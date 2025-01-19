@@ -8,10 +8,12 @@ public class PlayerShooting : NetworkBehaviour
 {
 	public NetworkVariable<bool> IsShooting = new();
 	public NetworkVariable<float> FireRate = new(0.5f);
+	public NetworkVariable<Vector3> ShootDirection = new();
 	private float _previousTime;
 	private Camera _camera;
 	private Vector3 _mousePlanePosition;
 	private bool _isHoveringUI;
+	private PlayerTeam _playerTeam;
 	
 	private Plane _plane = new Plane(Vector3.up, Vector3.zero);
 
@@ -21,6 +23,7 @@ public class PlayerShooting : NetworkBehaviour
 	private void Awake()
 	{
 		_camera = Camera.main;
+		_playerTeam = GetComponent<PlayerTeam>();
 	}
 
 	public void ChangeShootingState(bool isShooting)
@@ -33,6 +36,7 @@ public class PlayerShooting : NetworkBehaviour
 	public void RequestShootServerRpc(bool isShooting)
 	{
 		if (!IsServer) return;
+		if (_playerTeam.Team.Value != PlayerTeamKind.Seeker) return; // Only seekers can shoot
 		IsShooting.Value = isShooting;
 	}
 
@@ -40,7 +44,14 @@ public class PlayerShooting : NetworkBehaviour
 	{
 		UpdateOverUI();
 		ClientPlanecasting();
+		UpdateShootDirection();
 		ServerShooting();
+	}
+
+	private void UpdateShootDirection()
+	{
+		var direction = _mousePlanePosition - transform.position;
+		direction.y = 0;
 	}
 	
 	private void UpdateOverUI()
@@ -79,6 +90,7 @@ public class PlayerShooting : NetworkBehaviour
 
 	public void OnShoot(InputValue value)
 	{
+		if (_playerTeam.Team.Value != PlayerTeamKind.Seeker) return;
 		if (_isHoveringUI && value.isPressed) return;
 		ChangeShootingState(value.isPressed);
 	}

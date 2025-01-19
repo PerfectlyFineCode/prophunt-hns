@@ -14,6 +14,7 @@ public class PlayerPropShapeshift : NetworkBehaviour
     private MeshFilter _originalFilter;
     private MeshRenderer _originalRenderer;
     private MeshCollider _originalCollider;
+    private PlayerTeam _playerTeam;
     private CharacterController _characterController;
 
     private void Awake()
@@ -22,6 +23,7 @@ public class PlayerPropShapeshift : NetworkBehaviour
         _originalRenderer = _originalModel.GetComponent<MeshRenderer>();
         _originalCollider = _originalModel.GetComponent<MeshCollider>();
         _characterController = GetComponent<CharacterController>();
+        _playerTeam = GetComponent<PlayerTeam>();
     }
 
     /// <inheritdoc />
@@ -106,6 +108,7 @@ public class PlayerPropShapeshift : NetworkBehaviour
     private void OnGUI()
     {
         if (!IsLocalPlayer) return;
+        if (_playerTeam.Team.Value == PlayerTeamKind.Seeker) return;
         if (GUI.Button(new Rect(Screen.width - 160, Screen.height - 160, 150, 50), "Shapeshift"))
         {
             Shapeshift(PropsManager.Instance.GetRandomProp().PrefabIdHash);
