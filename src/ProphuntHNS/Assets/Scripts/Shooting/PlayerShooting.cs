@@ -9,16 +9,15 @@ public class PlayerShooting : NetworkBehaviour
 	public NetworkVariable<bool> IsShooting = new();
 	public NetworkVariable<float> FireRate = new(0.5f);
 	public NetworkVariable<Vector3> ShootDirection = new();
+	
+	[SerializeField] private NetworkObject _bulletPrefab;
+	
 	private float _previousTime;
 	private Camera _camera;
 	private Vector3 _mousePlanePosition;
 	private bool _isHoveringUI;
 	private PlayerTeam _playerTeam;
-	
 	private Plane _plane = new Plane(Vector3.up, Vector3.zero);
-
-	[SerializeField]
-	private NetworkObject _bulletPrefab;
 
 	private void Awake()
 	{
@@ -52,6 +51,8 @@ public class PlayerShooting : NetworkBehaviour
 	{
 		var direction = _mousePlanePosition - transform.position;
 		direction.y = 0;
+		if (direction == Vector3.zero) return;
+		RequestChangeShootingDirectionServerRpc(direction);
 	}
 	
 	private void UpdateOverUI()
@@ -69,6 +70,13 @@ public class PlayerShooting : NetworkBehaviour
 			_mousePlanePosition = ray.GetPoint(distance);
 		}
 	}
+	
+	[ServerRpc]
+	public void RequestChangeShootingDirectionServerRpc(Vector3 direction)
+	{
+		if (!IsServer) return;
+		ShootDirection.Value = direction.normalized;
+	}
 
 	private void ServerShooting()
 	{
@@ -82,10 +90,16 @@ public class PlayerShooting : NetworkBehaviour
 	private void SpawnBullet()
 	{
 		if (!IsServer) return;
+		Vector3 direction = ShootDirection.Value.normalized;
+		
 		// Spawn bullet
 		NetworkObject networkObject = NetworkManager.SpawnManager.InstantiateAndSpawn(_bulletPrefab, position:
-			transform.position + transform.forward,
+			transform.position + direction,
 			rotation: transform.rotation);
+		
+		BulletMovement bulletMovement = networkObject.GetComponent<BulletMovement>();
+		bulletMovement.Sender = NetworkObject; // Ignore hits on the sender
+		bulletMovement.Direction = direction; // Set bullet direction
 	}
 
 	public void OnShoot(InputValue value)

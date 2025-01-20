@@ -104,7 +104,7 @@ public class PlayerPropShapeshift : NetworkBehaviour
         ChangePropServer(propId);
     }
 
-    #if UNITY_EDITOR
+    #if !UNITY_SERVER
     private void OnGUI()
     {
         if (!IsLocalPlayer) return;

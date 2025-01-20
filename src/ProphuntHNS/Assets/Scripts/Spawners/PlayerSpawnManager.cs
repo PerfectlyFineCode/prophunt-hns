@@ -22,6 +22,16 @@ public class PlayerSpawnManager : NetworkBehaviour
     
     private void SpawnPlayer()
     {
+        var id = NetworkBehaviourId;
+        // use ID as seed for random position
+        var random = new System.Random(id);
+        
+        _spawnPosition += new Vector3(
+            random.Next(-20, 20),
+            0,
+            random.Next(-20, 20)
+        );
+        
         transform.position = _spawnPosition;
     }
 }

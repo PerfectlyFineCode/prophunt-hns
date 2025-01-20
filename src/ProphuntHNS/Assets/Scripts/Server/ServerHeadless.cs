@@ -2,6 +2,7 @@ using System;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ServerHeadless : MonoBehaviour
 {
@@ -18,13 +19,12 @@ public class ServerHeadless : MonoBehaviour
     private void Start()
     {
         #if UNITY_SERVER
-            _networkManager.StartServer();
             Debug.Log("Server started");
+            _networkManager.StartServer();
             Application.targetFrameRate = 60;
         #else
             _networkManager.StartClient();
             Debug.Log("Client started");
         #endif
-        
     }
 }

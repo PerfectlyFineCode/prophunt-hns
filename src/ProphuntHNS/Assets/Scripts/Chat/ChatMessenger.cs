@@ -7,17 +7,13 @@ using UnityEngine.Events;
 
 public class ChatMessenger : NetworkBehaviour
 {
-    private static readonly Queue<string> _sendQueue = new();
-    
-    [SerializeField]
-    private int _maxMessages = 100;
-    
     public static event Action<string> ChatMessageReceived;
-    
     public static ObservableCollection<string> ChatMessages { get; } = new();
-
-    private int _count;
     
+    private static readonly Queue<string> _sendQueue = new();
+    [SerializeField] private int _maxMessages = 100;
+    private int _count; // Interal counter for messages for testing
+     
     public static void SendChatMessage(string message)
     {
         _sendQueue.Enqueue(message);

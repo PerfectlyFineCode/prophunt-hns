@@ -69,6 +69,6 @@ public class PlayerMovement : NetworkBehaviour
     private void MoveServerRpc(Vector2 inputDelta, Vector3 moveDirection)
     {
         _movementInput.Value = inputDelta.normalized;
-        _moveDirection.Value = moveDirection;
+        _moveDirection.Value = moveDirection.normalized;
     }
 }
