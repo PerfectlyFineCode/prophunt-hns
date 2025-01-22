@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5353357511182901499}
   - component: {fileID: 1147253562626988736}
   - component: {fileID: 1928453401115173654}
+  - component: {fileID: -6274364459642601765}
   m_Layer: 0
   m_Name: Prop_Toilet_01
   m_TagString: Untagged
@@ -136,6 +137,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 47a146ee389f8ee45b213f3dc1bac100, type: 3}
+--- !u!114 &-6274364459642601765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518600828519229813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a0168ebc3c40b08423b150676e856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightLayer: 8
 --- !u!1 &8569124497013292362
 GameObject:
   m_ObjectHideFlags: 0

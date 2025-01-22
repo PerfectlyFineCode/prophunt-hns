@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2009944040469275859}
   - component: {fileID: 5790753751507338156}
   - component: {fileID: 2953429740077009652}
+  - component: {fileID: -3903135030864054747}
   m_Layer: 0
   m_Name: Prop_Small_Table_08
   m_TagString: Untagged
@@ -135,3 +136,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c176abf7e77256d47b80380976e782d6, type: 3}
+--- !u!114 &-3903135030864054747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421712494547892786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a0168ebc3c40b08423b150676e856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightLayer: 8

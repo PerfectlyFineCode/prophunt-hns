@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5539879880939662184}
   - component: {fileID: 4982228649085793761}
   - component: {fileID: -2507012973341080017}
+  - component: {fileID: -2862485650950065749}
   m_Layer: 0
   m_Name: Prop_TowelRail
   m_TagString: Untagged
@@ -135,3 +136,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 53e628cdf0f310544b2fb1a0c057c0fb, type: 3}
+--- !u!114 &-2862485650950065749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471679325888541421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a0168ebc3c40b08423b150676e856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightLayer: 8

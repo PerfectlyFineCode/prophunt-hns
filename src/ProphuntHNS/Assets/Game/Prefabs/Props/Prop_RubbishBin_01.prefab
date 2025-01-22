@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3060770247624045239}
   - component: {fileID: 479857249502354441}
   - component: {fileID: -1174474393828952143}
+  - component: {fileID: 5205989670716593138}
   m_Layer: 0
   m_Name: Prop_RubbishBin_01
   m_TagString: Untagged
@@ -135,3 +136,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c0f04b229da967b41914e7b7bd5b2ba5, type: 3}
+--- !u!114 &5205989670716593138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7062550505178659551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a0168ebc3c40b08423b150676e856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightLayer: 8

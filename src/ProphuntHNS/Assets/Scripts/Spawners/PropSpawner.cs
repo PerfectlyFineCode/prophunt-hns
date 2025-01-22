@@ -23,6 +23,7 @@ public class PropSpawner : NetworkBehaviour
         if (!IsServer)
         {
             enabled = false;
+            return;
         }
         
         _propsManager.InitializePropsSet();

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6339117493478059943}
   - component: {fileID: 5615609745318651447}
   - component: {fileID: 7722887022370171388}
+  - component: {fileID: 5239570612346767786}
   m_Layer: 0
   m_Name: Prop_Turkey_03
   m_TagString: Untagged
@@ -135,3 +136,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b4f78ae7d06d7e746b0035bc7d7990d0, type: 3}
+--- !u!114 &5239570612346767786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795119140388956390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a0168ebc3c40b08423b150676e856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightLayer: 8

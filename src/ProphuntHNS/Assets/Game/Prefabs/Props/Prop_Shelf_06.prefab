@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6912171270335814040}
   - component: {fileID: 1992522600411016732}
   - component: {fileID: 6115681718581182710}
+  - component: {fileID: -4851670320830613334}
   m_Layer: 0
   m_Name: Prop_Shelf_06
   m_TagString: Untagged
@@ -135,3 +136,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dc873fb310717d540a9589dd6f84b184, type: 3}
+--- !u!114 &-4851670320830613334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8279100187072325892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a0168ebc3c40b08423b150676e856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightLayer: 8

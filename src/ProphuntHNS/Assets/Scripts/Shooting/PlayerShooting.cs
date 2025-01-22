@@ -49,6 +49,7 @@ public class PlayerShooting : NetworkBehaviour
 
 	private void UpdateShootDirection()
 	{
+		if (!IsLocalPlayer) return;
 		var direction = _mousePlanePosition - transform.position;
 		direction.y = 0;
 		if (direction == Vector3.zero) return;

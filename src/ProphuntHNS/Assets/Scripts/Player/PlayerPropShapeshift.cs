@@ -4,6 +4,7 @@ using Unity.Netcode;
 using UnityEditor;
 #endif
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerPropShapeshift : NetworkBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerPropShapeshift : NetworkBehaviour
     private MeshCollider _originalCollider;
     private PlayerTeam _playerTeam;
     private CharacterController _characterController;
+    private NetworkedPropObject _closestProp;
 
     private void Awake()
     {
@@ -32,6 +34,39 @@ public class PlayerPropShapeshift : NetworkBehaviour
         if (!IsLocalPlayer)
         {
             enabled = false;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!IsLocalPlayer) return;
+        if (_playerTeam.Team.Value != PlayerTeamKind.Hider) return;
+        UpdateCheckClosestProp();
+    }
+
+    private void UpdateCheckClosestProp()
+    {
+        if (!IsLocalPlayer) return;
+        if (_playerTeam.Team.Value != PlayerTeamKind.Hider) return;
+        
+        var props = FindObjectsByType<NetworkedPropObject>(FindObjectsSortMode.InstanceID);
+        if (props.Length == 0) return;
+        var oldClosestProp = _closestProp;
+        _closestProp = props[0];
+        foreach (var prop in props)
+        {
+            if (Vector3.Distance(transform.position, prop.transform.position) <
+                Vector3.Distance(transform.position, _closestProp.transform.position))
+            {
+                _closestProp = prop;
+            }
+        }
+        
+        if (oldClosestProp != _closestProp)
+        {
+            Debug.Log($"Closest prop: {_closestProp.name}");
+            _closestProp.Highlight();
+            oldClosestProp?.Unhighlight();
         }
     }
     
@@ -102,6 +137,14 @@ public class PlayerPropShapeshift : NetworkBehaviour
     {
         PropId.Value = propId;
         ChangePropServer(propId);
+    }
+
+    public void OnShapeshift(InputValue inputValue)
+    {
+        if (!IsLocalPlayer) return;
+        if (_playerTeam.Team.Value != PlayerTeamKind.Hider) return;
+        if (_closestProp == null) return;
+        Shapeshift(_closestProp.NetworkObject.PrefabIdHash);
     }
 
     #if !UNITY_SERVER
